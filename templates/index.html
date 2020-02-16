@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Book-Mementos</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="app">
+      <header class="page-header">
+        <router-link to="/top"
+          ><img
+            class="logo"
+            src="../assets/img/gopher-book-logo.png"
+            alt="book-mementos"
+        /></router-link>
+        <nav>
+          <ul class="main-nav">
+            <router-link><li>List</li></router-link>
+            <router-link><li>Search</li></router-link>
+          </ul>
+        </nav>
+      </header>
+      <router-view></router-view>
+    </div>
+
+    <!-- Vue.jsの読み込み -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  </body>
+</html>

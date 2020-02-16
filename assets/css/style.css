@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/*共通部分*/
+
+html {
+  font-size: 100%;
+}
+body {
+  line-height: 1.7;
+  color: #432;
+}
+
+/*ヘッダー部分*/
+.page-header {
+  background: black;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.logo {
+  width: 50%;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.main-nav {
+  color: white;
+  display: flex;
+  list-style: none;
+}
+
+.main-nav li {
+  font-size: 1.5rem;
+  margin-left: 36px;
+  line-height: 195px;
+  text-align: center;
+}
+
+/*フッター部分*/
+footer {
+  background: black;
+  text-align: center;
+  padding: 26px;
+  margin-top: 50px;
+}
+footer p {
+  color: white;
+  font-size: 20px;
+}
