@@ -12,7 +12,7 @@
   <body>
     <div id="app">
       <header class="page-header">
-        <router-link to="/top"
+        <router-link to="/"
           ><img
             class="logo"
             src="../assets/img/gopher-book-logo.png"
@@ -20,8 +20,8 @@
         /></router-link>
         <nav>
           <ul class="main-nav">
-            <router-link><li>List</li></router-link>
-            <router-link><li>Search</li></router-link>
+            <router-link to="/list"><li>List</li></router-link>
+            <router-link to="/search"><li>Search</li></router-link>
           </ul>
         </nav>
       </header>
@@ -29,7 +29,9 @@
     </div>
 
     <!-- Vue.jsの読み込み -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+    <script src="../assets/js/main.js"></script>
   </body>
 </html>
