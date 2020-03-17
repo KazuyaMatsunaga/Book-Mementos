@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <h1>top</h1>
+    <img class="search-logo" src="http://localhost:8080/assets/img/top-gopher.png/" height="200px" />
   </div>
 </template>
 
