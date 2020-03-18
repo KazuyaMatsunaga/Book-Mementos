@@ -3,23 +3,17 @@ const routes = [
   {
     path: "/",
     name: "top",
-    component: httpVueLoader(
-      "http://localhost:8080/assets/js/components/Top.vue"
-    )
+    component: httpVueLoader("http://localhost:8080/view/components/Top.vue")
   },
   {
     path: "/list",
     name: "list",
-    component: httpVueLoader(
-      "http://localhost:8080/assets/js/components/List.vue"
-    )
+    component: httpVueLoader("http://localhost:8080/view/components/List.vue")
   },
   {
     path: "/search",
     name: "search",
-    component: httpVueLoader(
-      "http://localhost:8080/assets/js/components/Search.vue"
-    )
+    component: httpVueLoader("http://localhost:8080/view/components/Search.vue")
   }
 ];
 

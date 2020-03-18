@@ -10,6 +10,7 @@ func main() {
 	router := gin.Default()
 
 	router.Static("/assets", "./assets")
+	router.Static("/view", "./view")
 
 	router.LoadHTMLGlob("templates/*")
 

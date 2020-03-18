@@ -35,6 +35,7 @@ body {
   margin-left: 36px;
   line-height: 195px;
   text-align: center;
+  transition: all 0.25s ease;
 }
 
 /*フッター部分*/
