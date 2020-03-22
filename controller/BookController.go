@@ -10,7 +10,15 @@ import (
 
 // 全ての本の情報を返す
 func FetchAllBooksFromList(c *gin.Context) {
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
 
+	books := []models.Book{}
+
+	db.Order("book_id asc").Find(&books)
+
+	c.JSON(200, books)
+
+	defer db.Close()
 }
 
 // 指定された本の情報を返す

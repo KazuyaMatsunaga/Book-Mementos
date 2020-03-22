@@ -98,6 +98,9 @@ module.exports = {
       axios.post("/addBookToList", params).then(response => {
         if (response.status != 200) {
           console.log(response.status);
+          alert("エラーが発生しました． " + "(" + response.status + ")");
+        } else {
+          alert("本を追加しました．");
         }
       });
     }
