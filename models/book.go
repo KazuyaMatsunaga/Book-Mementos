@@ -9,9 +9,11 @@ type Book struct {
 	ImageLink     string
 	Title         string
 	SubTitle      string
-	Authors       []string `gorm:"type:varchar(255);"`
+	Authors       string
 	Publisher     string
 	PublishedDate string
+	PreviewLink   string
+	State         bool // true:読了 , false:未読
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 	DeletedAt     *time.Time

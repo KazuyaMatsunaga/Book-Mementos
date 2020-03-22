@@ -45,6 +45,7 @@
                       variant="outline-dark"
                       target="_blank"
                       size="lg"
+                      v-on:click="doAddBookToList(item.volumeInfo)"
                     >ADD</b-button>
                   </b-card-body>
                 </b-col>
@@ -66,6 +67,7 @@ module.exports = {
     };
   },
   methods: {
+    // GoogleBooksAPIから検索結果を取得
     getResult(query) {
       axios
         .get("https://www.googleapis.com/books/v1/volumes?q=search" + query)
@@ -73,6 +75,31 @@ module.exports = {
           console.log(response.data);
           this.items = response.data.items;
         });
+    },
+    // 本をDBヘ登録
+    doAddBookToList(volumeInfo) {
+      // サーバへ送信するパラメータ
+      const params = new URLSearchParams();
+      params.append("imageLink", volumeInfo.imageLinks.thumbnail);
+      params.append("bookTitle", volumeInfo.title);
+      params.append("bookSubTitle", volumeInfo.subtitle);
+
+      for (let i = 0; i < volumeInfo.authors.length; i++) {
+        if (i == volumeInfo.authors.length - 1) {
+          params.append("authors", volumeInfo.authors[i]);
+        } else {
+          params.append("authors", volumeInfo.authors[i] + ",");
+        }
+      }
+      params.append("publisher", volumeInfo.publisher);
+      params.append("publishedDate", volumeInfo.publishedDate);
+      params.append("previewLink", volumeInfo.previewLink);
+
+      axios.post("/addBookToList", params).then(response => {
+        if (response.status != 200) {
+          console.log(response.status);
+        }
+      });
     }
   }
 };
