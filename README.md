@@ -9,3 +9,10 @@
 | Backend     | Go     | 
 | DB     | MySQL     | 
 
+## 機能
+- GoogleBooksAPIを用いた書籍名検索が可能
+- 機能一覧
+- - 書籍追加
+- - 書籍削除
+
+## TODO
