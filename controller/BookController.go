@@ -3,6 +3,7 @@ package controller
 import (
 	"gin-book-mementos/models"
 	"github.com/gin-gonic/gin"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -56,7 +57,15 @@ func AddBookToList(c *gin.Context) {
 
 // DBから本を削除
 func DeleteBookFromList(c *gin.Context) {
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
 
+	bookID, _ := strconv.Atoi(c.PostForm("bookID"))
+
+	book := []models.Book{}
+
+	db.Delete(&book, bookID)
+
+	defer db.Close()
 }
 
 // 本の読了状態を変更する

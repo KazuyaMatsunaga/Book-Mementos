@@ -24,6 +24,14 @@
                       v-bind:href="book.PreviewLink"
                       target="_blank"
                     >Show Detail</b-button>
+                    <br />
+                    <b-button
+                      class="button-delete"
+                      variant="outline-dark"
+                      target="_blank"
+                      size="lg"
+                      v-on:click="doDeleteBookFromList(book.BookID)"
+                    >DELETE</b-button>
                   </b-card-body>
                 </b-col>
               </b-row>
@@ -59,6 +67,22 @@ module.exports = {
           console.log(this.books);
         }
       });
+    },
+    doDeleteBookFromList(BookID) {
+      // サーバへ送信するパラメータ
+      const params = new URLSearchParams();
+      params.append("bookID", BookID);
+
+      axios.post("/deleteBookFromList", params).then(response => {
+        if (response.status != 200) {
+          console.log(response.status);
+          alert("エラーが発生しました． " + "(" + response.status + ")");
+        } else {
+          this.books = [];
+          this.doFetchAllBooksFromList();
+          alert("本を削除しました．");
+        }
+      });
     }
   }
 };
@@ -81,5 +105,16 @@ module.exports = {
 .book-card {
   margin-top: 30px;
   position: relative;
+  margin-bottom: 30px;
+}
+
+.button-delete {
+  position: absolute;
+  display: block;
+  margin: 0 auto;
+  bottom: 0;
+  margin-bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>
