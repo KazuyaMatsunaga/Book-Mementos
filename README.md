@@ -8,7 +8,7 @@
 | 領域 |使用技術  |
 | -------- | -------- | 
 | Frontend     | Vue.js     | 
-| Backend     | Go     | 
+| Backend     | Go(Gin)     | 
 | DB     | MySQL     | 
 
 ## 機能
