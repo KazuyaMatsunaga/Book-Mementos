@@ -1,7 +1,7 @@
 # Book-Mementos
 書籍管理アプリケーションです．(開発途中)
 
-![](https://i.imgur.com/BkQJmih.mp4)
+![](https://i.imgur.com/BkQJmih.gif)
 
 ## 使用技術
 
