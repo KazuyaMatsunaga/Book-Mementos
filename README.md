@@ -1,5 +1,5 @@
 # Book-Mementos
-書籍管理アプリケーションです．(開発途中)
+書籍管理アプリケーションです．(開発途中です)
 
 ![imgur](https://i.imgur.com/2cuntLB.png)
 
