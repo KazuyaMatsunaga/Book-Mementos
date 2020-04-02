@@ -27,6 +27,11 @@ func FetchBookFromList(c *gin.Context) {
 
 }
 
+// 本がすでに登録されているかどうか確認
+func JudgeBookInList(c *gin.Context) {
+
+}
+
 // 本をDBヘ登録
 func AddBookToList(c *gin.Context) {
 	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")

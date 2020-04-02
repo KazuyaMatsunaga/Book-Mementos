@@ -80,17 +80,11 @@ module.exports = {
     doAddBookToList(volumeInfo) {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams();
+
       params.append("imageLink", volumeInfo.imageLinks.thumbnail);
       params.append("bookTitle", volumeInfo.title);
       params.append("bookSubTitle", volumeInfo.subtitle);
-
-      for (let i = 0; i < volumeInfo.authors.length; i++) {
-        if (i == volumeInfo.authors.length - 1) {
-          params.append("authors", volumeInfo.authors[i]);
-        } else {
-          params.append("authors", volumeInfo.authors[i] + ",");
-        }
-      }
+      params.append("authors", volumeInfo.authors.join());
       params.append("publisher", volumeInfo.publisher);
       params.append("publishedDate", volumeInfo.publishedDate);
       params.append("previewLink", volumeInfo.previewLink);
