@@ -11,7 +11,7 @@ import (
 
 // 全ての本の情報を返す
 func FetchAllBooksFromList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
 
 	books := []models.Book{}
 
@@ -29,7 +29,7 @@ func FetchBookFromList(c *gin.Context) {
 
 // 本をDBヘ登録
 func AddBookToList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
 
 	imageLink := c.PostForm("imageLink")
 	bookTitle := c.PostForm("bookTitle")
@@ -57,7 +57,7 @@ func AddBookToList(c *gin.Context) {
 
 // DBから本を削除
 func DeleteBookFromList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
 
 	bookID, _ := strconv.Atoi(c.PostForm("bookID"))
 

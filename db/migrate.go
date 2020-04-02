@@ -8,6 +8,6 @@ import (
 )
 
 func main() {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(localhost:3306)/books?charset=utf8&parseTime=True")
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
 	db.CreateTable(&models.Book{})
 }

@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  book-mementos:
+    container_name: book-mementos-container
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/go/src/gin-book-mementos/
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    container_name: go-db
+    volumes:
+      - ./data/mysql:/var/lib/mysql:cached
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306 # 開放するポート
+    environment:
+      MYSQL_ROOT_PASSWORD: docker_pwd
+      MYSQL_DATABASE: books
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: Password_01

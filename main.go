@@ -23,6 +23,19 @@ func main() {
 			"title": "Book Mementos",
 		})
 	})
+
+	router.GET("/list", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"title": "Book Mementos",
+		})
+	})
+
+	router.GET("/search", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"title": "Book Mementos",
+		})
+	})
+
 	// 全ての本の情報を返す
 	router.GET("/fetchAllBooksFromList", controller.FetchAllBooksFromList)
 
