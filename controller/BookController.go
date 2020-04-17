@@ -27,9 +27,26 @@ func FetchBookFromList(c *gin.Context) {
 
 }
 
-// 本がすでに登録されているかどうか確認
-func JudgeBookInList(c *gin.Context) {
+// データベースに登録された本を一つ見つける
+func FindBookFirst(title string) models.Book {
+	var book models.Book
 
+	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+
+	defer db.Close()
+	db.Where("title = ?", title).First(&book)
+	return book
+}
+
+// 本がすでにDBに登録されているかどうか確認、tureなら登録済み、falseなら未登録
+func JudgeBookInList(title string) bool {
+	bookTitle := title
+
+	if b := FindBookFirst(bookTitle); b.Title == bookTitle {
+		return true
+	} else {
+		return false
+	}
 }
 
 // 本をDBヘ登録
@@ -55,7 +72,12 @@ func AddBookToList(c *gin.Context) {
 		State:         false,
 	}
 
-	db.Create(&book)
+	// DBに本がすでに登録されていればstatus:409を返す、登録されていなければDBに本を登録する
+	if JudgeBookInList(bookTitle) {
+		c.Status(409)
+	} else {
+		db.Create(&book)
+	}
 
 	defer db.Close()
 }

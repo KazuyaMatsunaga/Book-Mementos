@@ -89,14 +89,25 @@ module.exports = {
       params.append("publishedDate", volumeInfo.publishedDate);
       params.append("previewLink", volumeInfo.previewLink);
 
-      axios.post("/addBookToList", params).then(response => {
-        if (response.status != 200) {
-          console.log(response.status);
-          alert("エラーが発生しました． " + "(" + response.status + ")");
-        } else {
-          alert("本を追加しました．");
-        }
-      });
+      axios
+        .post("/addBookToList", params)
+        .then(response => {
+          //　正常処理
+          if (response.status == 200) {
+            alert("本を追加しました．");
+            console.log(response.status);
+          }
+        })
+        .catch(error => {
+          //エラー処理
+          if (error.response.status == 409) {
+            alert("この本はすでに登録されています．");
+            console.log(error.response.status);
+          } else {
+            alert("エラーが発生しました．　" + "(" + response.status + ")");
+            console.log(error.response.status);
+          }
+        });
     }
   }
 };
