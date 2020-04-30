@@ -10,6 +10,7 @@
 | Frontend     | Vue.js     | 
 | Backend     | Go(Gin)     | 
 | DB     | MySQL     | 
+| Infrastructure     | Docker     | 
 
 ## 機能
 - GoogleBooksAPIを用いた書籍名検索が可能
