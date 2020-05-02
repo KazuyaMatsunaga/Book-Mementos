@@ -3,6 +3,7 @@ package controller
 import (
 	"gin-book-mementos/models"
 	"github.com/gin-gonic/gin"
+	"log"
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -11,7 +12,10 @@ import (
 
 // 全ての本の情報を返す
 func FetchAllBooksFromList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	if err != nil {
+		log.Println(err)
+	}
 
 	books := []models.Book{}
 
@@ -31,10 +35,15 @@ func FetchBookFromList(c *gin.Context) {
 func FindBookFirst(title string) models.Book {
 	var book models.Book
 
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	if err != nil {
+		log.Println(err)
+	}
 
 	defer db.Close()
-	db.Where("title = ?", title).First(&book)
+	if err := db.Where("title = ?", title).First(&book).Error; err != nil {
+		log.Println(err)
+	}
 	return book
 }
 
@@ -51,7 +60,10 @@ func JudgeBookInList(title string) bool {
 
 // 本をDBヘ登録
 func AddBookToList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	if err != nil {
+		log.Println(err)
+	}
 
 	imageLink := c.PostForm("imageLink")
 	bookTitle := c.PostForm("bookTitle")
@@ -84,9 +96,15 @@ func AddBookToList(c *gin.Context) {
 
 // DBから本を削除
 func DeleteBookFromList(c *gin.Context) {
-	db, _ := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "user1:Password_01@tcp(docker.for.mac.localhost:3306)/books?charset=utf8&parseTime=True")
+	if err != nil {
+		log.Println(err)
+	}
 
-	bookID, _ := strconv.Atoi(c.PostForm("bookID"))
+	bookID, err := strconv.Atoi(c.PostForm("bookID"))
+	if err != nil {
+		log.Println(err)
+	}
 
 	book := []models.Book{}
 
